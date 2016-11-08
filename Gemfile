@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 #API gem
 gem 'rails-api'
+#Active Shipping gem estimates shipping costs from different carriers
+gem 'active_shipping'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.7'
 # Use sqlite3 as the database for Active Record
