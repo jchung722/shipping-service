@@ -63,7 +63,7 @@ class ShippingsController < ApplicationController
     @packages = eval params["packages"]
 
 
-    packages = [ActiveShipping::Package.new(@packages[:weight], @packages[:size])]
+    packages = [ActiveShipping::Package.new(@packages[:weight], @packages[:size], units: :imperial)]
     origin = ActiveShipping::Location.new(country: @origin[:country], state: @origin[:state], city: @origin[:city], zip: @origin[:zip])
     destination = ActiveShipping::Location.new(country: @destination[:country], state: @destination[:state], city: @destination[:city], zip: @destination[:zip])
 
