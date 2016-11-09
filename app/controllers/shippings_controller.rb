@@ -5,7 +5,7 @@ class ShippingsController < ApplicationController
   def index
     @package = {weight: 100, size: [50, 50, 50]}
     @origin = {country: 'US', state: 'CA', city: 'Beverly Hills', zip: '90210'}
-    @destination = {country: 'US', state: 'WA', city: 'Seattle', zip: '00000'}
+    @destination = {country: 'US', state: 'WA', city: 'Seattle', zip: '98102'}
 
     packages = [ActiveShipping::Package.new(@package[:weight], @package[:size])]
     origin = ActiveShipping::Location.new(country: @origin[:country], state: @origin[:state], city: @origin[:city], zip: @origin[:zip])
