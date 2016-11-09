@@ -7,9 +7,9 @@ class ShippingsController < ApplicationController
     # @origin = {country: 'US', state: 'CA', city: 'Beverly Hills', zip: '90210'}
     # @destination = {country: 'US', state: 'WA', city: 'Seattle', zip: '98102'}
 
-    @origin = Rack::Utils.parse_nested_query params[:origin]
-    @destination = Rack::Utils.parse_nested_query params[:destination]
-    @packages = Rack::Utils.parse_nested_query params[:packages]
+    @origin = eval params["origin"]
+    @destination = eval params["destination"]
+    @packages = eval params["packages"]
 
     packages = [ActiveShipping::Package.new(@packages[:weight], @packages[:size])]
     origin = ActiveShipping::Location.new(country: @origin[:country], state: @origin[:state], city: @origin[:city], zip: @origin[:zip])
@@ -54,13 +54,19 @@ class ShippingsController < ApplicationController
 
   def show
     @provider = params[:carrier_name].downcase
-    @package = {weight: 100, size: [50, 50, 50]}
-    @origin = {country: 'US', state: 'CA', city: 'Beverly Hills', zip: '90210'}
-    @destination = {country: 'US', state: 'WA', city: 'Seattle', zip: '98102'}
+    # @package = {"weight": 100, size: [50, 50, 50]}
+    # @origin = {country: 'US', state: 'CA', city: 'Beverly Hills', zip: '90210'}
+    # @destination = {country: 'US', state: 'WA', city: 'Seattle', zip: '98102'}
 
-    packages = [ActiveShipping::Package.new(@package[:weight], @package[:size])]
+    @origin = eval params["origin"]
+    @destination = eval params["destination"]
+    @packages = eval params["packages"]
+
+
+    packages = [ActiveShipping::Package.new(@packages[:weight], @packages[:size])]
     origin = ActiveShipping::Location.new(country: @origin[:country], state: @origin[:state], city: @origin[:city], zip: @origin[:zip])
     destination = ActiveShipping::Location.new(country: @destination[:country], state: @destination[:state], city: @destination[:city], zip: @destination[:zip])
+
 
     case @provider
     when "ups"
