@@ -41,7 +41,7 @@ class ShippingsController < ApplicationController
     end
 
     if ups_response && usps_response && fedex_response
-      rates = ups_response.rates.sort_by(&:price).collect {|rate| [rate.service_name, rate.price]} + usps_response.rates.sort_by(&:price).collect {|rate| [rate.service_name, rate.price]} + fedex_response.rates.sort_by(&:price).collect {|rate| [rate.service_name, rate.price]}
+      rates = ups_response.rates.sort_by(&:price).collect {|rate| [rate.service_name, rate.price]} + usps_response.rates.sort_by(&:price).collect {|rate| [rate.service_name, rate.price]}[5..-1] + fedex_response.rates.sort_by(&:price).collect {|rate| [rate.service_name, rate.price]}
     end
 
     if rates
